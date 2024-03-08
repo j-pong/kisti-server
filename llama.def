@@ -12,3 +12,6 @@ From: layers/conda.sif
 
     . /opt/conda/bin/activate && conda create -n llama python=3.9
     . /opt/conda/bin/activate /opt/conda/envs/llama && conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch-nightly -c nvidia
+
+	git clone https://github.com/j-pong/llama-recipes
+    . /opt/conda/bin/activate /opt/conda/envs/llama && cd llama-recipes && :
