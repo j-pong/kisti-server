@@ -1,0 +1,24 @@
+Bootstrap: localimage
+From: layers/conda.sif
+
+%environment
+    export LC_ALL=C
+    export SINGULARITY_SHELL=/bin/bash
+
+%files
+    ../fairseq/environment.yml /environment.yml
+
+%post
+    apt install -y libfftw3-dev libopenmpi-dev
+    apt install -y build-essential cmake
+    apt install -y libboost-system-dev libboost-thread-dev libboost-program-options-dev libboost-test-dev libeigen3-dev 
+    apt install -y zlib1g-dev libbz2-dev liblzma-dev
+    apt install -y pkg-config
+
+    . /opt/conda/bin/activate && conda env create -f environment.yml
+
+	. /opt/conda/bin/activate && conda activate fairseq && conda install -y pip setuptools
+    . /opt/conda/bin/activate && conda activate fairseq && python3 -m pip install --upgrade pip
+
+    git clone https://github.com/NVIDIA/apex
+    . /opt/conda/bin/activate && conda activate fairseq && cd apex && pip install -v --disable-pip-version-check --no-build-isolation --no-cache-dir ./

@@ -1,0 +1,14 @@
+Bootstrap: localimage
+From: layers/conda.sif
+
+%environment
+    export LC_ALL=C
+    export SINGULARITY_SHELL=/bin/bash
+
+%post
+    . /opt/conda/bin/activate && conda update -n base -c defaults conda -y
+    . /opt/conda/bin/activate && conda install -y pip setuptools
+    . /opt/conda/bin/activate && python3 -m pip install --upgrade pip
+
+    . /opt/conda/bin/activate && conda create -n llama python=3.9
+    . /opt/conda/bin/activate /opt/conda/envs/llama && conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch-nightly -c nvidia

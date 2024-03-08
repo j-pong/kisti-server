@@ -1,0 +1,32 @@
+Bootstrap: localimage
+From: base.sif
+
+%environment
+    export LC_ALL=C
+    
+%post
+    apt-get update -y && apt-get upgrade -y
+
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    dialog \
+    apt-utils \
+    ca-certificates \
+    wget \
+    git \
+    vim \
+    libssl-dev \
+    curl \
+    unzip \
+    unrar
+
+    apt-get install -y --no-install-recommends \
+    sudo \
+    zip \
+    tree
+
+    apt-get install -y --no-install-recommends \
+    sox \
+    cmake \
+    make \
+    flac
