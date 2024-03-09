@@ -8,5 +8,5 @@ module load singularity/3.11.0
 module load cuda/12.1
 
 srun --partition=amd_a100nv_8 --nodes=1 \
-    --ntasks-per-node=1 --cpus-per-task=10 \
-    --gres=gpu:1 --comment=pytorch --pty bash
+    --ntasks-per-node=2 --cpus-per-task=10 \
+    --gres=gpu:2 --comment=pytorch --pty bash
